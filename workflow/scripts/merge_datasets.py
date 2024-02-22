@@ -18,7 +18,10 @@ df = df[df["Assembly Status"] != "suppressed"]
 df = df[["Assembly Accession", "Organism Taxonomic ID", "Annotation Name"]]
 
 # Create a columns which tells if there is an annotation associated with the assembly
-df["annotation"] = pd.notnull(df['Annotation Name'])
+if snakemake.params.reannotate_all == True:
+    df["annotation"] = False
+else:
+    df["annotation"] = pd.notnull(df['Annotation Name'])
 
 # Rename columns
 df.rename(

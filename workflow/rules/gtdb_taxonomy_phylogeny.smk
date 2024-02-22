@@ -46,6 +46,8 @@ rule merge_prune_gtdb_output:
     input:
         bacteria_metadata = bac120_prune_input,
         archaea_metadata = ar53_prune_input
+    params:
+        reannotate_all=config["reannotate_all"]
     output:
         metadata="prune_gtdb.metadata.tsv"
     script:
@@ -95,6 +97,8 @@ rule filter_gtdb:
     """
     input:
         "{method}.ncbi_datasets.tsv"
+    params:
+        reannotate_all=config["reannotate_all"]
     output:
         "{method}.annotation_data.tsv"
     script:

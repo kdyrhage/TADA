@@ -17,6 +17,10 @@ properties:
     type: integer
     description: value for random seed to use in pruning and sampling step
     default: 42
+  reannotate_all:
+    type: boolean
+    description: reannotate all genomes with prokka
+    default: false
   required:
     type: string
     description: path to file containing user defined genome accessions to be included in the final dataset

@@ -34,6 +34,8 @@ rule merge_genome_summary:
     """
     input:
         expand("ncbi_data/taxa/{taxa}.tsv", taxa=TAXA)
+    params:
+        reannotate_all=config["reannotate_all"]
     output:
         "ncbi_data/datasets_unchecked.tsv"
     script:
@@ -105,6 +107,8 @@ rule merge_genome_summary_required_genomes:
     """
     input:
         "ncbi_data/required_genomes_unchecked.tsv"
+    params:
+        reannotate_all=config["reannotate_all"]
     output:
         "ncbi_data/required_genomes_unchecked_anno_info.tsv"
     script:
